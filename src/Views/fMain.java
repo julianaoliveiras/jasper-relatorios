@@ -1,12 +1,30 @@
 package Views;
 
+import Connection.ConnectionFactory;
+import DAO.PessoaDAO;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import java.awt.Image;
 import java.awt.Graphics;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.Clock;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import models.Pessoa;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.swing.JRViewer;
 
 /**
  *
@@ -51,11 +69,14 @@ public class fMain extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Projeto Programação Desktop");
@@ -130,6 +151,14 @@ public class fMain extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem7);
 
+        jMenuItem8.setText("Relatório de Cliente");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem8);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Produto");
@@ -141,6 +170,14 @@ public class fMain extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem9);
+
+        jMenuItem10.setText("Relatório de Produto");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem10);
 
         jMenuBar1.add(jMenu5);
 
@@ -161,6 +198,14 @@ public class fMain extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem6);
+
+        jMenuItem13.setText("Relatório de Vendas");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem13);
 
         jMenuBar1.add(jMenu2);
 
@@ -279,6 +324,33 @@ public class fMain extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        PessoaDAO cliente = new PessoaDAO();
+        
+        try {
+            JasperReport relatorioCompilado 
+                    = JasperCompileManager.compileReport("src/Jasper/RelatorioCliente.jrxml");
+            JasperPrint relatorioPreenchido= JasperFillManager.fillReport(relatorioCompilado, null, 
+                    new JRBeanCollectionDataSource(cliente.read()));
+            JDialog tela= new JDialog(this, "Relatório de Clientes", true);
+            tela.setSize(1000, 500);
+            JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+            tela.getContentPane().add(painelRelatorio);
+            tela.setVisible(true);
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório");
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -330,13 +402,16 @@ public class fMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private DAO.ProdutoDAO produtoDAO1;
     // End of variables declaration//GEN-END:variables
