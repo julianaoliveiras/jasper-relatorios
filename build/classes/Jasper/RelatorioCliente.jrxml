@@ -176,14 +176,14 @@ FROM programacaodesktop.pessoa]]>
 				<reportElement x="0" y="0" width="560" height="1" uuid="00ea0be6-2eeb-4b29-bf6e-fefa1ba98540"/>
 			</line>
 			<textField>
-				<reportElement x="450" y="20" width="100" height="30" uuid="badd92d2-9506-4e0c-ba95-48a2d0e0974a"/>
+				<reportElement x="360" y="20" width="100" height="30" uuid="badd92d2-9506-4e0c-ba95-48a2d0e0974a"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="613" y="30" width="100" height="30" uuid="4c846fc2-a050-425d-b201-fb845dd0b857"/>
+				<reportElement x="460" y="20" width="100" height="30" uuid="4c846fc2-a050-425d-b201-fb845dd0b857"/>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

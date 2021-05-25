@@ -1,7 +1,9 @@
 package Views;
 
 import Connection.ConnectionFactory;
+import DAO.PedidoDAO;
 import DAO.PessoaDAO;
+import DAO.ProdutoDAO;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Clock;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -334,7 +338,7 @@ public class fMain extends javax.swing.JFrame {
             JasperPrint relatorioPreenchido= JasperFillManager.fillReport(relatorioCompilado, null, 
                     new JRBeanCollectionDataSource(cliente.read()));
             JDialog tela= new JDialog(this, "Relatório de Clientes", true);
-            tela.setSize(1000, 500);
+            tela.setSize(900, 800);
             JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
             tela.getContentPane().add(painelRelatorio);
             tela.setVisible(true);
@@ -345,11 +349,54 @@ public class fMain extends javax.swing.JFrame {
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
+        ProdutoDAO produto = new ProdutoDAO();
+        try {
+            JasperReport relatorioCompilado 
+                    = JasperCompileManager.compileReport("src/Jasper/RelatorioProduto.jrxml");
+            JasperPrint relatorioPreenchido= JasperFillManager.fillReport(relatorioCompilado, null, 
+                    new JRBeanCollectionDataSource(produto.read()));
+            JDialog tela= new JDialog(this, "Relatório de Produtos", true);
+            tela.setSize(900, 800);
+            JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+            tela.getContentPane().add(painelRelatorio);
+            tela.setVisible(true);
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório");
+        }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
+        PedidoDAO pedido = new PedidoDAO();
+        try {
+            JasperReport relatorioCompilado 
+                    = JasperCompileManager.compileReport("src/Jasper/RelatorioVendas.jrxml");
+            JasperPrint relatorioPreenchido= JasperFillManager.fillReport(relatorioCompilado, 
+                    constroiParametrosPedido(), 
+                    new JRBeanCollectionDataSource(pedido.read()));
+            JDialog tela= new JDialog(this, "Relatório de Vendas", true);
+            tela.setSize(900, 800);
+            JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+            tela.getContentPane().add(painelRelatorio);
+            tela.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(fMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório");
+        }
+        
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+private Map constroiParametrosPedido(){
+    Map hash = new HashMap();
+    int max = Integer.valueOf(
+            JOptionPane.showInputDialog(
+            this,
+            "Digite o número da nota fical máxima para o relatório", 
+            "Entrada de Dados",
+            JOptionPane.QUESTION_MESSAGE));
+    hash.put("$P{numPedido}", max);
+    //
+    return hash; 
+}
 
     /**
      * @param args the command line arguments

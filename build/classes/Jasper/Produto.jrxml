@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Produto" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6c7faf29-7f5b-46ae-b44d-0801b0c869b5">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter1.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[cHJvZ3JhbWFjYW9kZXNrdG9wLnByb2R1dG8gQVMgLDczLDEyNCwwYjhkODA5Yi1hZmViLTRlYzEt
+OWY3NS1lMTQ0ZWQyY2Y0NGM7]]>
+	</property>
+	<queryString>
+		<![CDATA[SELECT id_produto,
+	descricao,
+	marca,
+	preco_unitario
+FROM programacaodesktop.produto]]>
+	</queryString>
+	<field name="id_produto" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_produto"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_produto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+		<fieldDescription><![CDATA[id_produto]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+		<fieldDescription><![CDATA[descricao]]></fieldDescription>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="marca"/>
+		<property name="com.jaspersoft.studio.field.label" value="marca"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+		<fieldDescription><![CDATA[marca]]></fieldDescription>
+	</field>
+	<field name="preco_unitario" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="preco_unitario"/>
+		<property name="com.jaspersoft.studio.field.label" value="preco_unitario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+		<fieldDescription><![CDATA[preco_unitario]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="110" y="14" width="370" height="40" uuid="e766258f-09a9-4f5f-81ec-dc9d75a636f0"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Produtos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="400" y="10" width="160" height="20" uuid="d847329a-9d13-484a-9609-b9c1c977c1aa"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Impresso em: "+new java.text.SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="560" height="1" uuid="7aae3f71-e19a-4458-8272-3352d4506c9d"/>
+			</line>
+			<staticText>
+				<reportElement x="53" y="0" width="100" height="30" uuid="cd334ecd-7190-4bcc-84d0-d2284bac7845">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b0305bad-94ed-4b80-987c-cbbbc5955565"/>
+				</reportElement>
+				<text><![CDATA[descricao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="0" width="100" height="30" uuid="bc38e38a-69d1-4016-a028-1a443b874256">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="24b45739-52e3-4dfd-831e-c784774e6761"/>
+				</reportElement>
+				<text><![CDATA[marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="0" width="100" height="30" uuid="81e6091f-9d17-479b-9213-3ae8b724bc9e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a0c43cfc-8468-4149-bb34-df871a28934e"/>
+				</reportElement>
+				<text><![CDATA[preco_unitario]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="51" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="560" height="1" uuid="35ab748b-2575-4871-8994-b45e523fb6f7"/>
+			</line>
+			<line>
+				<reportElement x="-3" y="50" width="560" height="1" uuid="6b8bdc17-e20c-4813-b168-b82650f09430"/>
+			</line>
+			<textField>
+				<reportElement x="50" y="10" width="100" height="30" uuid="0cfe654a-fb2f-4892-af8d-f2dca174c046">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b0305bad-94ed-4b80-987c-cbbbc5955565"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="10" width="100" height="30" uuid="217e9c9e-5f5b-43e5-b397-f1713e135bff">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="24b45739-52e3-4dfd-831e-c784774e6761"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="10" width="100" height="30" uuid="083d12ad-ab32-473d-acc4-57a5c6a2ae88">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a0c43cfc-8468-4149-bb34-df871a28934e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{preco_unitario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
